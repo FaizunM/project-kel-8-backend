@@ -25,17 +25,20 @@ Route::get("/login", function () {
     return response()->json(["message" => "Unauthorized", "redirect_to" => "/login"], Response::HTTP_UNAUTHORIZED);
 })->name("login");
 
+Route::get("/student", [StudentController::class, 'index']);
+Route::get("/student/{id}", [StudentController::class, 'show']);
+Route::post("/student/search", [StudentController::class, "search"]);
+Route::get("/course/{id}", [CourseController::class, "show"]);
+Route::post("/course/view", [CourseController::class, "view"]);
+
 Route::middleware("auth:sanctum")->group(function () {
     Route::get("/account", function (Request $request) {
         return $request->user();
     });
 
-    Route::get("/student", [StudentController::class, 'index']);
-    Route::get("/student/{id}", [StudentController::class, 'show']);
     Route::put("/student/{id}", [StudentController::class, 'update']);
     Route::delete("/student/{id}", [StudentController::class, 'destroy']);
     Route::post("/student", [StudentController::class, 'store']);
-    Route::post("/student/search", [StudentController::class, "search"]);
     Route::put("/student/change-image", [StudentController::class, "change_image"]);
 
     Route::get("/teacher", [TeacherController::class, "index"]);
@@ -63,10 +66,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put("/major-class/change-image", [MajorClassController::class, "change_image"]);
 
     Route::get("/course", [CourseController::class, "index"]);
-    Route::get("/course/{id}", [CourseController::class, "show"]);
     Route::put("/course", [CourseController::class, "update"]);
     Route::delete("/course", [CourseController::class, "destroy"]);
     Route::post("/course", [CourseController::class, "store"]);
     Route::post("/course/search", [CourseController::class, "search"]);
-    Route::post("/course/view", [CourseController::class, "view"]);
 });
