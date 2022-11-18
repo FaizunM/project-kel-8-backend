@@ -20,7 +20,7 @@ class UserController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return response()->json(["message" => $validator->errors()], Response::HTTP_BAD_REQUEST);
+                return response()->json(["message" => $validator->errors()->first()], Response::HTTP_BAD_REQUEST);
             }
 
             $user = User::all()->where('username', $request->username)->where("password", $request->password);
@@ -50,7 +50,7 @@ class UserController extends Controller
                 "Bearer"]], 200);
             }
 
-            return response()->json(["status" => 0, "message" => "Login failed, username or password invalid"], 200);
+            return response()->json(["status" => 0, "message" => "Login failed, username or password invalid"], 400);
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], Response::HTTP_BAD_REQUEST);
         }

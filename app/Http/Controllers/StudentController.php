@@ -19,10 +19,10 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $student = Student::all();
+            $student = Student::paginate($request->per_page);
 
             return response()->json(["data" => $student], 200);
         } catch (\Throwable $th) {
