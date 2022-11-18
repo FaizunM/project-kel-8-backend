@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
-class CourceController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -5,6 +5,7 @@ use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,7 +26,7 @@ Route::get("/login", function () {
     return response()->json(["message" => "Unauthorized", "redirect_to" => "/login"], Response::HTTP_UNAUTHORIZED);
 })->name("login");
 
-Route::get("/student", [StudentController::class, 'index']);
+Route::post("/student/all", [StudentController::class, 'index']);
 Route::get("/student/{id}", [StudentController::class, 'show']);
 Route::post("/student/search", [StudentController::class, "search"]);
 Route::get("/course/{id}", [CourseController::class, "show"]);

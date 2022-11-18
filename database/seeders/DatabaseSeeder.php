@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Administrator',
+            'fullname' => 'Administrator',
             'role' => 'admin',
             'username' => 'admin',
             'email' => 'admin@smk.com',
