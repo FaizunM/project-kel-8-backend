@@ -17,10 +17,10 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $teacher = Teacher::all();
+            $teacher = Teacher::paginate($request->per_page);;
 
             return response()->json(["data" => $teacher], 200);
         } catch (\Throwable $th) {

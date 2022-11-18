@@ -17,10 +17,10 @@ class MajorClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $major_class = MajorClass::all();
+            $major_class = MajorClass::paginate($request->per_page);;
 
             return response()->json(["data" => $major_class], 200);
         } catch (\Throwable $th) {
