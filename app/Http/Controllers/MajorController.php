@@ -159,7 +159,7 @@ class MajorController extends Controller
     public function search(Request $request)
     {
         try {
-            $search = Major::where("fullname", "like", "%" . $request->name . "%")->paginate($request->per_page);
+            $search = Major::where("name", "like", "%" . $request->name . "%")->paginate($request->per_page);
 
             return response()->json($search, 200);
         } catch (\Throwable $th) {
