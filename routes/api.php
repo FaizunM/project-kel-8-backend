@@ -31,6 +31,8 @@ Route::get("/student/{id}", [StudentController::class, 'show']);
 Route::post("/student/search", [StudentController::class, "search"]);
 Route::get("/course/{id}", [CourseController::class, "show"]);
 Route::post("/course/view", [CourseController::class, "view"]);
+Route::get("/major/{id}", [MajorController::class, "show"]);
+Route::get("/major-class/{id}", [MajorClassController::class, "show"]);
 
 Route::middleware("auth:sanctum")->group(function () {
     Route::get("/account", function (Request $request) {
@@ -51,7 +53,6 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put("/teacher/change-image", [TeacherController::class, "change_image"]);
 
     Route::post("/major/all", [MajorController::class, "index"]);
-    Route::get("/major/{id}", [MajorController::class, "show"]);
     Route::put("/major", [MajorController::class, "update"]);
     Route::delete("/major", [MajorController::class, "destroy"]);
     Route::post("/major", [MajorController::class, "store"]);
@@ -59,7 +60,6 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::put("/major/change-image", [MajorController::class, "change_image"]);
 
     Route::post("/major-class/all", [MajorClassController::class, "index"]);
-    Route::get("/major-class/{id}", [MajorClassController::class, "show"]);
     Route::put("/major-class", [MajorClassController::class, "update"]);
     Route::delete("/major-class", [MajorClassController::class, "destroy"]);
     Route::post("/major-class", [MajorClassController::class, "store"]);

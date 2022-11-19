@@ -45,7 +45,7 @@ class TeacherController extends Controller
                 ]);
 
                 if ($validator->fails()) {
-                    return response()->json(["message" => $validator->errors()], Response::HTTP_BAD_REQUEST);
+                    return response()->json(["message" => $validator->errors()->first()], Response::HTTP_BAD_REQUEST);
                 }
 
                 $teacher = new Teacher;
