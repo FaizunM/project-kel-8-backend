@@ -22,7 +22,7 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         try {
-            $student = Student::paginate($request->per_page);
+            $student = Student::orderBy("updated_at", "desc")->paginate($request->per_page);
 
             return response()->json(["data" => $student], 200);
         } catch (\Throwable $th) {
@@ -67,7 +67,7 @@ class StudentController extends Controller
                 ]);
 
                 if ($validator->fails()) {
-                    return response()->json(["message" => $validator->errors()], Response::HTTP_BAD_REQUEST);
+                    return response()->json(["message" => $validator->errors()->first()], Response::HTTP_BAD_REQUEST);
                 }
 
                 $student = new Student;
