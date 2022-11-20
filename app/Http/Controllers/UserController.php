@@ -59,7 +59,7 @@ class UserController extends Controller
     public function change_image(Request $request, $id)
     {
         try {
-            if ($request->user()->role == "admin" || $request->user()->role == "student") {
+            if ($request->user()->role == "admin") {
                 $validator = Validator::make($request->all(), [
                     "image" => "file|image"
                 ]);
@@ -81,6 +81,17 @@ class UserController extends Controller
             }
         } catch (\Throwable $th) {
             return response()->json(["message" => $th->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json(["message" => "Logout successfully"], 200);
+        } catch (\Throwable $th) {
+            return response()->json(["message" => $th->getMessage()], 400);
         }
     }
 }
