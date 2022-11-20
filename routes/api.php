@@ -38,6 +38,8 @@ Route::middleware("auth:sanctum")->group(function () {
     Route::get("/account", function (Request $request) {
         return $request->user();
     });
+    Route::post("/change-image", [UserController::class, "change_image"]);
+    Route::post("/logout", [UserController::class, "logout"]);
 
     Route::put("/student/{id}", [StudentController::class, 'update']);
     Route::delete("/student/{id}", [StudentController::class, 'destroy']);
